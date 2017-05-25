@@ -1,0 +1,45 @@
+<div class="mm-chart-form" [formGroup]="form">
+	<p>
+		<label>Chart Name</label>
+		<input type="text" formControlName="title">
+	</p>
+	<p>
+		<label>Selected Color</label>
+		<mm-single-color-selector (colorChange)="onColorChange($event)"></mm-single-color-selector>
+		<input [style.visibility]="hidden" type="text" formControlName="color">
+	</p>
+	<p formGroupName="xCol">
+		<label>Column X</label>
+		<input dnd-droppable (onDropSuccess)="xTransferSuccess($event)" type="text" formControlName="label">
+		<input type="text" formControlName="name">
+		<input type="text" formControlName="type">
+	</p>
+	<p formGroupName="yCol">
+		<label>Column Y</label>
+		<input dnd-droppable (onDropSuccess)="yTransferSuccess($event)" type="text" formControlName="label">
+		<input type="text" formControlName="name">
+		<input type="text" formControlName="type">
+	</p>
+	<p>
+		<label>Show X Axis</label>
+		<input type="checkbox" formControlName="showXAxis">
+	</p>
+	<p>
+		<label>X Axis</label>
+		<input type="text" formControlName="xAxisName">
+	</p>
+	<p>
+		<label>Show Y Axis</label>
+		<input type="checkbox" formControlName="showYAxis">
+	</p>
+	<p>
+		<label>Y Axis</label>
+		<input type="text" formControlName="yAxisName">
+	</p>
+	<p>
+		<label>Aggregation type</label>
+		<select formControlName="aggregation">
+			<option *ngFor="let agg of aggregations | EKeys" [ngValue]="agg.key">{{agg.value}}</option>
+		</select>
+	</p>
+</div>
